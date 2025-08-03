@@ -39,3 +39,28 @@ fetch('barrios_ndvi.geojson')
       }
     }).addTo(map);
   });
+
+  // Crear la leyenda
+const legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function (map) {
+  const div = L.DomUtil.create('div', 'info legend');
+  const grades = [0, 0.2, 0.4, 0.6];
+  const labels = [];
+
+  // Generar etiquetas con colores
+  for (let i = 0; i < grades.length; i++) {
+    const from = grades[i];
+    const to = grades[i + 1];
+
+    labels.push(
+      '<i style="background:' + getColor(from + 0.01) + '"></i> ' +
+      from + (to ? ' – ' + to : '+')
+    );
+  }
+
+  div.innerHTML = '<h4>NDVI</h4>' + labels.join('<br>');
+  return div;
+};
+
+legend.addTo(map);
