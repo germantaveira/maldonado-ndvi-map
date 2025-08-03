@@ -18,7 +18,7 @@ function getColor(ndvi) {
 // Estilo de cada barrio
 function style(feature) {
   return {
-    fillColor: getColor(feature.properties.NDVI_2025),
+    fillColor: getColor(feature.properties.ndvi_mean_2025),
     weight: 1,
     opacity: 1,
     color: 'white',
@@ -34,7 +34,7 @@ fetch('barrios_ndvi.geojson')
       style: style,
       onEachFeature: function (feature, layer) {
         const nombre = feature.properties.NOMBRE || feature.properties.name || 'Barrio';
-        const ndvi = feature.properties.NDVI_2025?.toFixed(3);
+        const ndvi = feature.properties.ndvi_mean_2025?.toFixed(3);
         layer.bindPopup(`<strong>${nombre}</strong><br>NDVI: ${ndvi}`);
       }
     }).addTo(map);
