@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+h1 {
+  margin: 10px;
+  text-align: center;
+}
+#map {
+  height: 90vh;
+  width: 100%;
+}
